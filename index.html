@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cẩm Nang Đấm Boss</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&amp;display=swap" rel="stylesheet">
+  <style> body {
+        margin: 0;
+        background-color: #0b0b15;
+        color: white;
+        font-family: 'Orbitron', sans-serif;
+      }
+      .modal-overlay {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      }
+      .modal-content {
+        background-color: #1a1a2e;
+        padding: 30px;
+        border-radius: 10px;
+        text-align: center;
+      }
+      .modal-content a {
+        display: inline-block;
+        margin: 10px;
+        padding: 10px 20px;
+        background-color: #ff8a00;
+        color: white;
+        border-radius: 6px;
+        text-decoration: none;
+      }
+      .modal-content a:hover {
+        background-color: #e57400;
+      }
+      .top-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 80px 0;
+      }
+      .title-group h1 {
+        font-size: 2.4rem;
+        background: linear-gradient(90deg, #ff8a00, #e52e71);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin: 0;
+      }
+      .title-group p {
+        font-size: 1rem;
+        margin: 4px 0 0;
+      }
+      .social-icons a {
+        color: #888;
+        margin-left: 12px;
+        font-size: 1.2rem;
+        text-decoration: none;
+      }
+      nav {
+        background-color: #1a1a2e;
+        display: flex;
+        justify-content: center;
+        padding: 8px 0;
+        flex-wrap: wrap;
+      }
+      .nav-item {
+        margin: 0 12px;
+        color: white;
+        font-weight: bold;
+        text-decoration: none;
+      }
+      .nav-item:hover {
+        color: #ff8a00;
+      }
+      .section {
+        padding: 30px 20px;
+        max-width: 1100px;
+        margin: auto;
+      }
+      .btn-orange {
+        background-color: #ff8a00;
+        color: white;
+        padding: 10px 25px;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+      }
+      .btn-orange:hover {
+        background-color: #e57400;
+      }
+      .support-section {
+        background-color: #111;
+        padding: 40px 20px;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+      }
+      .support-box {
+        max-width: 400px;
+        margin: 20px;
+      }
+      .support-box a {
+        color: #88c0ff;
+        text-decoration: underline;
+      }
+      footer {
+        background-color: #111;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #888;
+        flex-wrap: wrap;
+      }
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Web Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+    </style>
+  <script> function openModal() {
+        document.querySelector('.explore-modal').style.display = 'flex';
+      }
+      function closeModal(e) {
+        if (e.target.classList.contains('modal-overlay')) {
+          e.target.style.display = 'none';
+        }
+      }
+      function showLogin() {
+        document.getElementById('loginModal').style.display = 'flex';
+      }
+    </script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal-content" id="loginOptions">
+      <h4>Chào mừng bạn đến với Cẩm Nang Đấm Boss</h4>
+      <p>Vui lòng đăng nhập hoặc đăng ký để tiếp tục</p>
+      <a href="#" onclick="showLoginForm()">Đăng nhập</a>
+      <a href="#" onclick="showRegisterForm()">Đăng ký</a>
+    </div>
+    <div class="modal-content" id="loginForm" style="display: none;">
+      <h4>Đăng nhập</h4>
+      <input type="text" placeholder="Tài khoản"><br>
+      <input type="password" placeholder="Mật khẩu"><br>
+      <button onclick="hideLoginModal()">Đăng nhập</button>
+    </div>
+    <div class="modal-content" id="registerForm" style="display: none;">
+      <h4>Đăng ký</h4>
+      <input type="text" placeholder="Tài khoản đăng nhập"><br>
+      <input type="password" placeholder="Mật khẩu"><br>
+      <input type="password" placeholder="Xác nhận lại mật khẩu"><br>
+      <button onclick="hideLoginModal()">Đăng ký</button>
+    </div>
+  </div>
+  <!-- MODAL KHÁM PHÁ NGAY -->
+  <div class="modal-overlay" id="exploreModal" style="display: none;">
+    <div class="modal-content">
+      <h4>Chọn mục bạn muốn khám phá</h4>
+      <img src="../modal-image.png" alt="Hình minh hoạ" class="explore-image">
+      <a href="#">Danh sách Boss</a>
+      <a href="#">Kỹ năng Nhân vật</a>
+      <br><button onclick="hideExploreModal()">Đóng</button>
+    </div>
+  </div>
+  <script> function showLogin() {
+      document.getElementById('loginModal').style.display = 'flex';
+      document.getElementById('loginOptions').style.display = 'block';
+      document.getElementById('loginForm').style.display = 'none';
+      document.getElementById('registerForm').style.display = 'none';
+    }
+
+    function showLoginForm() {
+      document.getElementById('loginOptions').style.display = 'none';
+      document.getElementById('loginForm').style.display = 'block';
+      document.getElementById('registerForm').style.display = 'none';
+    }
+
+    function showRegisterForm() {
+      document.getElementById('loginOptions').style.display = 'none';
+      document.getElementById('loginForm').style.display = 'none';
+      document.getElementById('registerForm').style.display = 'block';
+    }
+
+    function hideLoginModal() {
+      document.getElementById('loginModal').style.display = 'none';
+    }
+
+    function showExploreModal() {
+      document.getElementById('exploreModal').style.display = 'flex';
+    }
+
+    function hideExploreModal() {
+      document.getElementById('exploreModal').style.display = 'none';
+    }
+  </script>
+  <!-- HEADER -->
+  <div class="top-bar">
+    <div class="title-group">
+      <h1>CẨM NANG ĐẤM BOSS</h1>
+      <p>Hướng dẫn đấm boss như thần – không trượt phát nào</p>
+    </div>
+    <div class="social-icons" style="font-size: 1.4rem; display: flex; align-items: center;">
+      <a href="#" class="btn btn-sm btn-outline-light me-2" onclick="showLoginForm()">Đăng nhập</a>
+      <a href="#" class="btn btn-sm btn-warning me-3" onclick="showRegisterForm()">Đăng ký</a>
+      <div id="userGreeting" style="text-align: right; padding: 10px 20px; color: #ff8a00; font-weight: bold;">
+        <!-- tên sẽ hiện ở đây -->
+      </div>
+    </div>
+  </div>
+  <!-- MODAL ĐĂNG NHẬP / ĐĂNG KÝ -->
+  <div id="loginModal" class="modal-overlay" style="">
+    <div class="modal-content" id="loginOptions">
+      <h4>Chào mừng bạn đến với Cẩm Nang Đấm Boss</h4>
+      <p>Vui lòng đăng nhập hoặc đăng ký để tiếp tục</p>
+      <a href="#" onclick="showLoginForm()">Đăng nhập</a>
+      <a href="#" onclick="showRegisterForm()">Đăng ký</a>
+    </div>
+    <div class="modal-content" id="loginForm" style="display: none;">
+      <h4>Đăng nhập</h4>
+      <input type="text" placeholder="Tài khoản"><br>
+      <input type="password" placeholder="Mật khẩu"><br>
+      <button onclick="hideLoginModal()">Đăng nhập</button>
+    </div>
+    <div class="modal-content" id="registerForm" style="display: none;">
+      <h4>Đăng ký</h4>
+      <input type="text" placeholder="Tài khoản đăng nhập"><br>
+      <input type="password" placeholder="Mật khẩu"><br>
+      <input type="password" placeholder="Xác nhận lại mật khẩu"><br>
+      <button onclick="hideLoginModal()">Đăng ký</button>
+    </div>
+  </div>
+  <!-- MENU -->
+  <nav>
+    <a href="#" class="nav-item">Trang chủ</a>
+    <a href="#" class="nav-item">Boss</a>
+    <a href="#" class="nav-item">Chiến thuật</a>
+    <a href="#" class="nav-item">Kỹ năng</a>
+    <a href="#" class="nav-item">Vũ khí</a>
+    <a href="#" class="nav-item">Hỗ trợ</a>
+  </nav>
+  <!-- GIỚI THIỆU -->
+  <div class="section text-center">
+    <h2>Giới Thiệu</h2>
+    <p style="text-algin: center;"> Web này là nơi tổng hợp toàn bộ thông tin về các loại boss <br> mẹo chiến đấu, lựa chọn nhân vật và trang bị <br> giúp bạn "đấm" mọi kẻ thù một cách dễ dàng.</p>
+    <button class="btn-orange mt-4" onclick="openModal()">Khám phá ngay</button>
+  </div>
+  <div class="py-5 text-center">
+    <div class="container">
+      <div class="row">
+        <div class="mx-auto col-md-12">
+          <h1 class="mb-3">Các sản phẩm game</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 col-lg-3 p-4"> <img class="img-fluid d-block mb-3 mx-auto" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLs2GxmfnwZ0F5uzNGUy0Jj4pci6oCmIQ45g&amp;s" width="200" alt="Card image cap">
+          <h4> <b>honkai star rail</b> </h4>
+        </div>
+        <div class="col-6 col-lg-3 p-4"> <img class="img-fluid d-block mb-3 mx-auto" width="200" alt="Card image cap" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3EmA_0N_fGVW269zBtLX6_iRa2Xc4mmr_bg&amp;s">
+          <h4> <b>Fate Grand Order</b> </h4>
+        </div>
+        <div class="col-6 col-lg-3 p-4"> <img class="img-fluid d-block mb-3 mx-auto" src="https://play-lh.googleusercontent.com/EwolwmpxNBLGQgDW4wRJy1TkMjFE5-7sE93I0gpLHSc49oJy4TON8AGHBaHdFIA8nRU" width="200">
+          <h4> <b>Punishing <br> grave raven</b> </h4>
+        </div>
+        <div class="col-6 col-lg-3 p-4"> <img class="img-fluid d-block mb-3 mx-auto" src="https://img.utdstc.com/icon/5aa/ecd/5aaecd3b98dd59b8cd70ca1a97bf508bb800c5366e205141851933eeaf9f902a:200" width="200">
+          <h4> <b>Wu <br> Wa</b> </h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- MODAL KHÁM PHÁ NGAY -->
+  <div class="modal-overlay explore-modal" style="display: none;" onclick="closeModal(event)">
+    <div class="modal-content">
+      <h4>Chọn mục bạn muốn khám phá</h4>
+      <a href="https://fate-go.us/">Fate Grand Order </a>
+      <a href="https://pgr.kurogame.net/">Punishing Gray Raven</a>
+    </div>
+  </div>
+  <!-- SUPPORT -->
+  <div class="support-section">
+    <div class="support-box">
+      <h5>Get Support</h5>
+      <p>Hỗ trợ chuyên nghiệp giúp bạn vận hành trang web dễ dàng hơn.</p>
+      <a href="#">Xem hỗ trợ</a>
+    </div>
+    <div class="support-box">
+      <h5>Tài Liệu.</h5>
+      <p>Tài liệu chi tiết giúp bạn thiết lập và tùy chỉnh mọi thứ.</p>
+      <a href="#">Xem tài liệu</a>
+    </div>
+  </div>
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2025 Cẩm Nang Đấm Boss. Thiết kế phong cách Rivendell-inspired.</span>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" style=""></script>
+  <pingendo onclick="window.open('https://pingendo.com/', '_blank')" style="cursor:pointer;position: fixed;bottom: 20px;right:20px;padding:4px;background-color: #00b0eb;border-radius: 8px; width:220px;display:flex;flex-direction:row;align-items:center;justify-content:center;font-size:14px;color:white">Made with Pingendo Free&nbsp;&nbsp;<img src="https://pingendo.com/site-assets/Pingendo_logo_big.png" class="d-block" alt="Pingendo logo" height="16"></pingendo>
+</body>
+
+</html>
